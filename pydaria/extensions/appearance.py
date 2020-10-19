@@ -1,2 +1,5 @@
+from flask_bootstrap import Bootstrap
+
+
 def init_app(app):
-    pass
+    Bootstrap(app)
