@@ -1,25 +1,42 @@
 from flask import Flask
+
 from pydaria.extensions import configuration
-from pydaria.extensions import appearance
-from pydaria.extensions import database
-from pydaria.extensions import auth
-from pydaria.extensions import admin
-from pydaria.extensions import commands
-from pydaria.extensions import views
 
+def minimal_app():
+    app = Flask(__name__)
+    # ? o configuration agora é responsável por todos os módulos da aplicação
+    configuration.init_app(app)
+    return app
 
-app = Flask(__name__)
-
-configuration.init_app(app)
-appearance.init_app(app)
-database.init_app(app)
-auth.init_app(app)
-admin.init_app(app)
-commands.init_app(app)
-views.init_app(app)
+def create_app():
+    app = minimal_app()
+    configuration.load_extensions(app)
+    return app
 
 """
-Codigo antes da modificação
+Codigo antes da segunda modificação
+"""
+
+# from pydaria.extensions import appearance
+# from pydaria.extensions import database
+# from pydaria.extensions import auth
+# from pydaria.extensions import admin
+# from pydaria.extensions import commands
+# from pydaria.blueprint import views
+# from pydaria.blueprint import restapi
+
+# app = Flask(__name__)
+
+# configuration.init_app(app)
+# appearance.init_app(app)
+# database.init_app(app)
+# auth.init_app(app)
+# admin.init_app(app)
+# commands.init_app(app)
+# views.init_app(app)
+
+"""
+Codigo antes da primeira modificação
 """
 
 # from dynaconf import FlaskDynaconf

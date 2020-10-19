@@ -1,0 +1,1 @@
+# plugin, bussiness, extensions internals, regras de negócio
