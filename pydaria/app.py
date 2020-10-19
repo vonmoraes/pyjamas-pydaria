@@ -1,6 +1,14 @@
-from dynaconf import FlaskDynaconf
 from flask import Flask, render_template, abort
-from flask_admin import Admin 
+from pydaria.extensions import configuration
+# from dynaconf import FlaskDynaconf
+from pydaria.extensions import appearance
+from pydaria.extensions import database
+from pydaria.extensions import auth
+from pydaria.extensions import admin
+from pydaria.extensions import commands
+from pydaria.extensions import views
+
+# from flask_admin import Admin 
 from flask_admin.base import AdminIndexView
 from flask_admin.contrib import sqla
 from flask_bootstrap import Bootstrap
@@ -8,7 +16,15 @@ from flask_simplelogin import SimpleLogin, login_required
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-FlaskDynaconf(app)
+
+configuration.init_app(app)
+appearance.init_app(app)
+database.init_app(app)
+auth.init_app(app)
+admin.init_app(app)
+commands.init_app(app)
+views.init_app(app)
+# FlaskDynaconf(app)
 Bootstrap(app)
 db = SQLAlchemy(app)
 
